@@ -113,7 +113,7 @@ struct ExplorerSettings
   // How many lines to draw between frames. This dynamically adjusts to keep
   // a desirable framerate
   unsigned n_lines_to_draw;
-  
+
   int window_size_x;
   int window_size_y;
   unsigned n_threads;
@@ -123,7 +123,7 @@ struct ExplorerSettings
 ExplorerSettings::ExplorerSettings() : running(true), delta_angle(5.0), delta_scoot(1.0),
   n_lines_to_draw(5), window_size_x(ExplorerSettings::default_win_size_x),
   window_size_y(ExplorerSettings::default_win_size_y), n_threads(1),
-  use_fullscreen(false) 
+  use_fullscreen(false)
 {
 #ifdef _OPENMP
   n_threads = omp_get_max_threads();
@@ -266,7 +266,7 @@ class Camera
   std::vector<openmc::RGBColor> colors;
 
   bool isRendering_;
-  
+
   unsigned line_index;
 
   // Needs a window manager object to know how many rays to create
@@ -532,12 +532,12 @@ void Camera::renderlines(Renderer& rend, ExplorerSettings& sett) {
         bool intersection_found = true;
         unsigned n_loops = 0;
         while (intersection_found) {
-          bool inside_cell = openmc::find_cell(&part, false);
+          bool inside_cell = openmc::find_cell(part, false);
           if (inside_cell) {
             // Inside geometry, so normal tracing routines may be used
             hitsomething = true;
             intersection_found = true;
-            auto dist = openmc::distance_to_boundary(&part);
+            auto dist = openmc::distance_to_boundary(part);
             materials_tracks[part.material_] += dist.distance;
 
             // Advance particle
@@ -556,7 +556,7 @@ void Camera::renderlines(Renderer& rend, ExplorerSettings& sett) {
                 dist.lattice_translation[1] != 0 ||
                 dist.lattice_translation[2] != 0) {
               // Particle crosses lattice boundary
-              cross_lattice(&part, dist);
+              cross_lattice(part, dist);
             }
 
           } else {
