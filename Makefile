@@ -1,11 +1,10 @@
 # NOTE change these things to match your setup!!!
-OPENMC = /home/gavin/code/openmc
-OPENMC_BUILD = $(OPENMC)/build_opt
+OPENMC = /home/shriwise/opt/openmc
 CXX ='g++'
 
 # These should be set automatically
 INCLUDE = -I$(OPENMC)/include -I$(OPENMC)/vendor/pugixml -I$(OPENMC)/vendor/gsl/include
-LIBS = -L$(OPENMC_BUILD)/lib
+LIBS = -L$(OPENMC)/lib
 HDF_INCLUDES = -I/usr/include/hdf5/serial
 HDF_LINKS = -L/usr/lib/x86_64-linux-gnu/hdf5/serial -lhdf5_hl_cpp -lhdf5_cpp -lhdf5_hl -lhdf5
 DEBUG = -O0 -g -fstack-protector # -DDEBUG # uncomment for mega printing
